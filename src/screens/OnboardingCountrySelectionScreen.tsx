@@ -1,20 +1,31 @@
+import React, { FC, useContext } from "react";
 import {
   FlatList,
   Image,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext } from "react";
-import SafeArea from "../components/layout/SafeArea";
-import { SettingsContext } from "../context/SettingsContext";
-import Typography from "../components/text/Typography";
-import Spacer from "../components/layout/Spacer";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-const OnboardingCountrySelectionScreen = () => {
+import SafeArea from "../components/layout/SafeArea";
+import Typography from "../components/text/Typography";
+import Spacer from "../components/layout/Spacer";
+
+import { SettingsContext } from "../context/SettingsContext";
+import { AppStackParams } from "../types/navigation";
+interface IOnboardingCountrySelectionScreen {
+  navigation: NativeStackNavigationProp<
+    AppStackParams,
+    "OnboardingCountrySelectionScreen"
+  >;
+}
+
+const OnboardingCountrySelectionScreen: FC<
+  IOnboardingCountrySelectionScreen
+> = ({ navigation }) => {
   const { countries, selectedCountry, selectCountry } =
     useContext(SettingsContext);
   const { colors } = useTheme();
@@ -88,7 +99,10 @@ const OnboardingCountrySelectionScreen = () => {
                   selectedCountry.name === "" ? "grey" : colors.primary,
               },
             ]}
-            // onPress={() => navigation.push("CategoriesSelectionScreen")}
+            onPress={() =>
+              selectCountry.name !== "" &&
+              navigation.push("OnboardingCategoriesSelectionScreen")
+            }
           >
             <Typography>Next</Typography>
           </TouchableOpacity>
@@ -102,7 +116,12 @@ export default OnboardingCountrySelectionScreen;
 
 const styles = StyleSheet.create({
   topWrapper: { flex: 1 },
-  bottomWrapper: { height: 70, justifyContent: "center", alignItems: "center" },
+  bottomWrapper: {
+    height: 70,
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   fab: {
     padding: 13,
     borderRadius: 50,
