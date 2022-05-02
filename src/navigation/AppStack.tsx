@@ -10,14 +10,15 @@ import {
   OnboardingCountrySelectionScreen,
   OnboardingWelcomeScreen,
 } from "../screens";
+import { SettingsContext } from "../context/SettingsContext";
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
 export const AppStack = () => {
   const { colors } = useTheme();
   const { Navigator, Screen } = Stack;
-  const isFirstVisit = false;
-  const isFirstVisitLoading = false;
+
+  const { isFirstVisit, isFirstVisitLoading } = useContext(SettingsContext);
 
   if (isFirstVisitLoading) {
     return (
