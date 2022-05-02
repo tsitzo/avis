@@ -48,12 +48,15 @@ export const AppStack = () => {
           <Screen
             name="OnboardingCountrySelectionScreen"
             component={OnboardingCountrySelectionScreen}
-            options={{ headerLargeTitle: true, headerTitle: "Coutries" }}
+            options={{ headerLargeTitle: true, headerTitle: "Select Country" }}
           />
           <Screen
             name="OnboardingCategoriesSelectionScreen"
             component={OnboardingCategoriesSelectionScreen}
-            options={{ headerLargeTitle: true, headerTitle: "Categories" }}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Select Categories",
+            }}
           />
         </>
       ) : (

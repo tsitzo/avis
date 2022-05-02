@@ -1,6 +1,6 @@
 export type Country = {
   name: string;
-  //   language: string;
+  language: string;
   iso: string;
   flag: any;
 };
