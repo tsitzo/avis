@@ -19,7 +19,16 @@ const HomeScreenStack = () => {
   const { Screen, Navigator } = HomeStack;
 
   return (
-    <Navigator>
+    <Navigator
+      screenOptions={{
+        headerLargeTitle: true,
+        headerTransparent: true,
+        headerLargeStyle: { backgroundColor: colors.background },
+        headerStyle: { backgroundColor: colors.card },
+        headerShadowVisible: false,
+        headerLargeTitleStyle: { fontSize: 32 },
+      }}
+    >
       <Screen name="GGames" component={HomeScreen} />
     </Navigator>
   );
@@ -30,7 +39,16 @@ const SettingsScreenStack = () => {
   const { Screen, Navigator } = SettingsStack;
 
   return (
-    <Navigator>
+    <Navigator
+      screenOptions={{
+        headerLargeTitle: true,
+        headerTransparent: true,
+        headerLargeStyle: { backgroundColor: colors.background },
+        headerStyle: { backgroundColor: colors.card },
+        headerShadowVisible: false,
+        headerLargeTitleStyle: { fontSize: 32 },
+      }}
+    >
       <Screen name="Settings" component={SettingsScreen} />
     </Navigator>
   );
@@ -43,7 +61,16 @@ export const AppTabs = () => {
   const { Screen, Navigator } = Tabs;
 
   return (
-    <Navigator>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        headerTransparent: false,
+        tabBarStyle: {
+          backgroundColor: colors.card,
+        },
+        tabBarShowLabel: false,
+      }}
+    >
       <Screen
         name="HomeScreen"
         component={HomeScreenStack}

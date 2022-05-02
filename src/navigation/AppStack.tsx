@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator<AppStackParams>();
 
 export const AppStack = () => {
   const { colors } = useTheme();
-
+  const { Navigator, Screen } = Stack;
   const isFirstVisit = false;
   const isFirstVisitLoading = false;
 
@@ -28,7 +28,7 @@ export const AppStack = () => {
   }
 
   return (
-    <Stack.Navigator
+    <Navigator
       screenOptions={{
         headerLargeStyle: { backgroundColor: colors.background },
         headerStyle: { backgroundColor: colors.card },
@@ -38,18 +38,18 @@ export const AppStack = () => {
     >
       {isFirstVisit ? (
         <>
-          <Stack.Screen
+          <Screen
             name="OnboardingWelcomeScreen"
             component={OnboardingWelcomeScreen}
             options={{ headerShown: false }}
           />
 
-          <Stack.Screen
+          <Screen
             name="OnboardingCountrySelectionScreen"
             component={OnboardingCountrySelectionScreen}
             options={{ headerLargeTitle: true, headerTitle: "Coutries" }}
           />
-          <Stack.Screen
+          <Screen
             name="OnboardingCategoriesSelectionScreen"
             component={OnboardingCategoriesSelectionScreen}
             options={{ headerLargeTitle: true, headerTitle: "Categories" }}
@@ -57,13 +57,13 @@ export const AppStack = () => {
         </>
       ) : (
         <>
-          <Stack.Screen
+          <Screen
             name="AppTabs"
             component={AppTabs}
             options={{ headerShown: false }}
           />
         </>
       )}
-    </Stack.Navigator>
+    </Navigator>
   );
 };
