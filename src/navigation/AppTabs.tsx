@@ -8,8 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 
 import { AppTabsParams } from "../types/navigation";
-import HomeScreen from "../screens/HomeScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import { HomeScreen, SettingsScreen } from "../screens";
 
 const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
