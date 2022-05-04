@@ -11,6 +11,7 @@ import {
   OnboardingWelcomeScreen,
 } from "../screens";
 import { SettingsContext } from "../context/SettingsContext";
+import SettingsThemeScreen from "../screens/SettingsThemeScreen";
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
@@ -65,6 +66,14 @@ export const AppStack = () => {
             name="AppTabs"
             component={AppTabs}
             options={{ headerShown: false }}
+          />
+          <Screen
+            name="SettingsThemeScreen"
+            component={SettingsThemeScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Select Theme",
+            }}
           />
         </>
       )}

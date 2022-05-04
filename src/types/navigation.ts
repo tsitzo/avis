@@ -10,4 +10,5 @@ export type AppStackParams = {
   OnboardingCategoriesSelectionScreen: undefined;
   OnboardingCountrySelectionScreen: undefined;
   AppTabs: undefined;
+  SettingsThemeScreen: undefined;
 };

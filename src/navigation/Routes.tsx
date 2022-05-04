@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { AppStack } from "./AppStack";
 import { CustomDarkTheme, CustomLightTheme } from "../theme";
 import { useColorScheme } from "react-native-appearance";
+import { SettingsContext } from "../context/SettingsContext";
 
 export const Routes = () => {
   const scheme = useColorScheme();
-  const theme: string = "automatic";
+  const { theme } = useContext(SettingsContext);
 
   let THEME;
   let STATUS_BAR_STYLE;

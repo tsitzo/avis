@@ -33,7 +33,10 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
               },
             ]}
           >
-            <TouchableOpacity style={styles.selectionTileContent}>
+            <TouchableOpacity
+              style={styles.selectionTileContent}
+              onPress={() => navigation.push("SettingsThemeScreen")}
+            >
               <Typography>Theme</Typography>
               <View style={styles.chevonWrapper}>
                 <Typography color="subtext" style={styles.capitalize}>
