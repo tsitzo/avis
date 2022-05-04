@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { AppTabsParams } from "../types/navigation";
 import { HomeScreen, SettingsScreen } from "../screens";
+import MyNewsScreen from "../screens/MyNewsScreen";
 
 const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
@@ -22,14 +23,33 @@ const HomeScreenStack = () => {
     <Navigator
       screenOptions={{
         headerLargeTitle: true,
-        headerTransparent: true,
         headerLargeStyle: { backgroundColor: colors.background },
         headerStyle: { backgroundColor: colors.card },
-        headerShadowVisible: false,
-        headerLargeTitleStyle: { fontSize: 32 },
+
+        headerLargeTitleShadowVisible: false,
       }}
     >
-      <Screen name="GGames" component={HomeScreen} />
+      <Screen name="AVIS" component={HomeScreen} />
+    </Navigator>
+  );
+};
+
+const MyNewsScreenStack = () => {
+  const { colors } = useTheme();
+
+  const { Screen, Navigator } = HomeStack;
+
+  return (
+    <Navigator
+      screenOptions={{
+        headerLargeTitle: true,
+        headerLargeStyle: { backgroundColor: colors.background },
+        headerStyle: { backgroundColor: colors.card },
+
+        headerLargeTitleShadowVisible: false,
+      }}
+    >
+      <Screen name="My News" component={MyNewsScreen} />
     </Navigator>
   );
 };
@@ -42,11 +62,10 @@ const SettingsScreenStack = () => {
     <Navigator
       screenOptions={{
         headerLargeTitle: true,
-        headerTransparent: true,
         headerLargeStyle: { backgroundColor: colors.background },
         headerStyle: { backgroundColor: colors.card },
-        headerShadowVisible: false,
-        headerLargeTitleStyle: { fontSize: 32 },
+
+        headerLargeTitleShadowVisible: false,
       }}
     >
       <Screen name="Settings" component={SettingsScreen} />
@@ -64,7 +83,7 @@ export const AppTabs = () => {
     <Navigator
       screenOptions={{
         headerShown: false,
-        headerTransparent: false,
+        // headerTransparent: false,
         tabBarStyle: {
           backgroundColor: colors.card,
         },
@@ -79,7 +98,21 @@ export const AppTabs = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "md-home" : "md-home-outline"}
-              size={20}
+              size={22}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Screen
+        name="MyNewsScreen"
+        component={MyNewsScreenStack}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "md-newspaper" : "md-newspaper-outline"}
+              size={22}
               color={color}
             />
           ),
@@ -95,7 +128,7 @@ export const AppTabs = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "md-settings" : "md-settings-outline"}
-              size={20}
+              size={22}
               color={color}
             />
           ),

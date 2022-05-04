@@ -1,6 +1,8 @@
 export type AppTabsParams = {
   HomeScreen: undefined;
   SettingsScreen: undefined;
+  MyNewsScreen: undefined;
+  ExploreScreen: undefined;
 };
 
 export type AppStackParams = {
