@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTheme } from "@react-navigation/native";
@@ -9,6 +9,7 @@ import { AppStackParams } from "../types/navigation";
 import SafeArea from "../components/layout/SafeArea";
 import Spacer from "../components/layout/Spacer";
 import Typography from "../components/text/Typography";
+import { SettingsContext } from "../context/SettingsContext";
 
 interface ISettingsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "AppTabs">;
@@ -16,6 +17,7 @@ interface ISettingsScreenProps {
 
 const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
   const { colors } = useTheme();
+  const { theme } = useContext(SettingsContext);
 
   return (
     <SafeArea>
@@ -24,6 +26,7 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
           <View
             style={[
               styles.selectionTile,
+              styles.selectionTileBorder,
 
               {
                 borderBottomColor: colors.separator,
@@ -34,7 +37,7 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
               <Typography>Theme</Typography>
               <View style={styles.chevonWrapper}>
                 <Typography color="subtext" style={styles.capitalize}>
-                  {"theme"}
+                  {theme}
                 </Typography>
                 <Spacer x={10} />
                 <Ionicons

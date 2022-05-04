@@ -1,10 +1,12 @@
 import React, { FC, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Category, Country } from "../types/types";
+import { Category, Country, Themes } from "../types/types";
 import { categories } from "../data/categories";
 import { countries } from "../data/countries";
 
 type SettingsContextState = {
+  theme: Themes;
+
   categories: Category[];
   selectedCategories: Category[];
   countries: Country[];
@@ -15,9 +17,11 @@ type SettingsContextState = {
   removeCategory: (category: Category) => void;
   selectCountry: (country: Country) => void;
   setFirstVisitFalse: () => void;
+  selectTheme: (theme: Themes) => void;
 };
 
 const contextDefaultValue: SettingsContextState = {
+  theme: "automatic",
   isFirstVisitLoading: false,
   isFirstVisit: true,
   categories: categories,
@@ -28,12 +32,15 @@ const contextDefaultValue: SettingsContextState = {
   addCategory: () => {},
   removeCategory: () => {},
   setFirstVisitFalse: () => {},
+  selectTheme: () => {},
 };
 
 export const SettingsContext =
   createContext<SettingsContextState>(contextDefaultValue);
 
 export const SettingsContextProvider: FC = ({ children }) => {
+  const [theme, setTheme] = useState<Themes>(contextDefaultValue.theme);
+
   const [isFirstVisitLoading, setIsFirstVisitLoading] = useState<boolean>(
     contextDefaultValue.isFirstVisitLoading
   );
@@ -57,6 +64,10 @@ export const SettingsContextProvider: FC = ({ children }) => {
     contextDefaultValue.selectedCategories
   );
 
+  const selectTheme = (theme: Themes) => {
+    setTheme(theme);
+  };
+
   const addCategory = (category: Category) => {
     setSelectedCategories([...selectedCategories, category]);
   };
@@ -71,6 +82,26 @@ export const SettingsContextProvider: FC = ({ children }) => {
 
   const setFirstVisitFalse = () => {
     setIsFirstVisit(false);
+  };
+
+  const saveTheme = async (value: Themes) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@avis/theme", jsonValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadTheme = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@avis/theme");
+      if (value !== null) {
+        setTheme(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const loadCategories = async () => {
@@ -139,6 +170,10 @@ export const SettingsContextProvider: FC = ({ children }) => {
   };
 
   useEffect(() => {
+    loadTheme();
+  }, []);
+
+  useEffect(() => {
     loadFirstVisit();
   }, []);
 
@@ -149,6 +184,10 @@ export const SettingsContextProvider: FC = ({ children }) => {
   useEffect(() => {
     loadCategories();
   }, []);
+
+  useEffect(() => {
+    saveTheme(theme);
+  }, [theme]);
 
   useEffect(() => {
     saveFirstVisit(isFirstVisit!);
@@ -165,6 +204,7 @@ export const SettingsContextProvider: FC = ({ children }) => {
   return (
     <SettingsContext.Provider
       value={{
+        theme,
         countries,
         selectedCountry,
         categories,
@@ -175,6 +215,7 @@ export const SettingsContextProvider: FC = ({ children }) => {
         removeCategory,
         selectCountry,
         setFirstVisitFalse,
+        selectTheme,
       }}
     >
       {children}

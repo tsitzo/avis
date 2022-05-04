@@ -1,3 +1,5 @@
+export type Themes = "automatic" | "light" | "dark";
+
 export type Country = {
   name: string;
   language: string;
