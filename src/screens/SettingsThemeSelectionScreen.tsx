@@ -9,7 +9,7 @@ import SafeArea from "../components/layout/SafeArea";
 import Spacer from "../components/layout/Spacer";
 import Typography from "../components/text/Typography";
 
-const SettingsThemeScreen = () => {
+const SettingsThemeSelectionScreen = () => {
   const { colors } = useTheme();
   const { theme, selectTheme } = useContext(SettingsContext);
 
@@ -65,7 +65,7 @@ const SettingsThemeScreen = () => {
   );
 };
 
-export default SettingsThemeScreen;
+export default SettingsThemeSelectionScreen;
 
 const styles = StyleSheet.create({
   scrollView: { padding: 15 },

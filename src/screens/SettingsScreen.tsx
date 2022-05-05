@@ -35,7 +35,7 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
           >
             <TouchableOpacity
               style={styles.selectionTileContent}
-              onPress={() => navigation.push("SettingsThemeScreen")}
+              onPress={() => navigation.push("SettingsThemeSelectionScreen")}
             >
               <Typography>Theme</Typography>
               <View style={styles.chevonWrapper}>
@@ -82,7 +82,10 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
               },
             ]}
           >
-            <TouchableOpacity style={styles.selectionTileContent}>
+            <TouchableOpacity
+              style={styles.selectionTileContent}
+              onPress={() => navigation.push("SettingsCountrySelectionScreen")}
+            >
               <Typography>Countries</Typography>
 
               <Ionicons

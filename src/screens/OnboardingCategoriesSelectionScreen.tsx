@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import {
   FlatList,
-  Image,
+  Text,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -66,7 +66,7 @@ const OnboardingCategoriesSelectionScreen: FC<
                   style={styles.selectionTileContent}
                 >
                   <View style={styles.selectionTileContentLeft}>
-                    {getCategoryIcon(item.name, colors.text)}
+                    {getCategoryIcon(item.name, colors.primary)}
                     <Spacer x={10} />
                     <View>
                       <Typography variant="bold" style={styles.capitalize}>
@@ -103,7 +103,7 @@ const OnboardingCategoriesSelectionScreen: FC<
               selectedCategories.length > 0 && setFirstVisitFalse()
             }
           >
-            <Typography>Done</Typography>
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -138,6 +138,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "800",
   },
   selectionTileContentLeft: { flexDirection: "row", alignItems: "center" },
   capitalize: { textTransform: "capitalize" },

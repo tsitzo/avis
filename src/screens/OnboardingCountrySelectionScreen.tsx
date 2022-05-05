@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Text,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTheme } from "@react-navigation/native";
@@ -104,7 +105,7 @@ const OnboardingCountrySelectionScreen: FC<
               navigation.push("OnboardingCategoriesSelectionScreen")
             }
           >
-            <Typography>Next</Typography>
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -139,6 +140,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "800",
   },
   selectionTileContentLeft: { flexDirection: "row", alignItems: "center" },
   capitalize: { textTransform: "capitalize" },
