@@ -2,21 +2,27 @@ import React, { useContext } from "react";
 import {
   FlatList,
   StyleSheet,
-  Image,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 import { SettingsContext } from "../context/SettingsContext";
+import { getCategoryIcon } from "../utils/getCategoryIcon";
 import SafeArea from "../components/layout/SafeArea";
 import Spacer from "../components/layout/Spacer";
 import Typography from "../components/text/Typography";
 
-const SettingsCountrySelectionScreen = () => {
-  const { countries, selectedCountry, selectCountry } =
-    useContext(SettingsContext);
+const SettingsCategoriesSelectionScreen = () => {
+  const {
+    categories,
+    selectedCategories,
+    setFirstVisitFalse,
+    addCategory,
+    removeCategory,
+  } = useContext(SettingsContext);
   const { colors } = useTheme();
   return (
     <SafeArea>
@@ -26,51 +32,43 @@ const SettingsCountrySelectionScreen = () => {
             styles.optionContainer,
             { backgroundColor: colors.card },
           ]}
-          data={countries}
+          data={categories}
           renderItem={({ item, index }) => (
             <View
-              key={item.iso}
+              key={item.name}
               style={[
                 styles.selectionTile,
                 {
                   borderBottomColor: colors.separator,
-                  borderBottomWidth: index + 1 < countries.length ? 0.17 : 0,
+                  borderBottomWidth: index + 1 < categories.length ? 0.17 : 0,
                 },
               ]}
             >
               <TouchableOpacity
-                onPress={() => selectCountry(item)}
+                onPress={() =>
+                  selectedCategories.find((c) => c.name === item.name)
+                    ? removeCategory(item)
+                    : addCategory(item)
+                }
                 style={styles.selectionTileContent}
               >
                 <View style={styles.selectionTileContentLeft}>
-                  <Image
-                    source={item.flag}
-                    style={{ maxWidth: 30, width: 30 }}
-                    resizeMode="cover"
-                  />
+                  {getCategoryIcon(item.name, colors.primary)}
                   <Spacer x={10} />
                   <View>
                     <Typography variant="bold" style={styles.capitalize}>
                       {item.name}
                     </Typography>
-                    <Typography
-                      color="subtext"
-                      style={styles.capitalize}
-                      size={14}
-                    >
-                      {item.language}
-                    </Typography>
                   </View>
                 </View>
-
                 <Ionicons
                   name={
-                    selectedCountry.name === item.name
+                    selectedCategories.find((c) => c.name === item.name)
                       ? "radio-button-on"
                       : "radio-button-off"
                   }
                   color={
-                    selectedCountry.name === item.name
+                    selectedCategories.find((c) => c.name === item.name)
                       ? colors.primary
                       : colors.subtext
                   }
@@ -79,7 +77,7 @@ const SettingsCountrySelectionScreen = () => {
               </TouchableOpacity>
             </View>
           )}
-          keyExtractor={(item) => item.iso}
+          keyExtractor={(item) => item.name}
           showsVerticalScrollIndicator={false}
         />
       </View>
@@ -87,13 +85,14 @@ const SettingsCountrySelectionScreen = () => {
   );
 };
 
-export default SettingsCountrySelectionScreen;
+export default SettingsCategoriesSelectionScreen;
 
 const styles = StyleSheet.create({
-  page: { flex: 1, padding: 15 },
-
-  optionContainer: { paddingHorizontal: 15, borderRadius: 10 },
+  selectionTileContentLeft: { flexDirection: "row", alignItems: "center" },
   capitalize: { textTransform: "capitalize" },
+  page: { flex: 1, padding: 15 },
+  optionContainer: { paddingHorizontal: 15, borderRadius: 10 },
+
   selectionTile: {
     paddingVertical: 15,
   },
@@ -102,5 +101,4 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  selectionTileContentLeft: { flexDirection: "row", alignItems: "center" },
 });

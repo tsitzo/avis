@@ -82,7 +82,11 @@ const OnboardingCountrySelectionScreen: FC<
                         ? "radio-button-on"
                         : "radio-button-off"
                     }
-                    color={colors.primary}
+                    color={
+                      selectedCountry.name === item.name
+                        ? colors.primary
+                        : colors.subtext
+                    }
                     size={18}
                   />
                 </TouchableOpacity>

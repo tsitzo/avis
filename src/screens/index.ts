@@ -6,7 +6,7 @@ import OnboardingCountrySelectionScreen from "./OnboardingCountrySelectionScreen
 import OnboardingWelcomeScreen from "./OnboardingWelcomeScreen";
 import MyNewsScreen from "./MyNewsScreen";
 import SettingsCountrySelectionScreen from "./SettingsCountrySelectionScreen";
-
+import SettingsCategoriesSelectionScreen from "./SettingsCategoriesSelectionScreen";
 export {
   HomeScreen,
   SettingsScreen,
@@ -16,4 +16,5 @@ export {
   SettingsThemeSelectionScreen,
   MyNewsScreen,
   SettingsCountrySelectionScreen,
+  SettingsCategoriesSelectionScreen,
 };

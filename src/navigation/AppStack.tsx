@@ -9,6 +9,7 @@ import {
   OnboardingCategoriesSelectionScreen,
   OnboardingCountrySelectionScreen,
   OnboardingWelcomeScreen,
+  SettingsCategoriesSelectionScreen,
   SettingsCountrySelectionScreen,
   SettingsThemeSelectionScreen,
 } from "../screens";
@@ -82,6 +83,14 @@ export const AppStack = () => {
             options={{
               headerLargeTitle: true,
               headerTitle: "Select Country",
+            }}
+          />
+          <Screen
+            name="SettingsCategoriesSelectionScreen"
+            component={SettingsCategoriesSelectionScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Select Categories",
             }}
           />
         </>

@@ -13,4 +13,5 @@ export type AppStackParams = {
   SettingsScreen: undefined;
   SettingsThemeSelectionScreen: undefined;
   SettingsCountrySelectionScreen: undefined;
+  SettingsCategoriesSelectionScreen: undefined;
 };

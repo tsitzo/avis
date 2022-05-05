@@ -61,8 +61,13 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
               },
             ]}
           >
-            <TouchableOpacity style={styles.selectionTileContent}>
-              <Typography>Manage Interests</Typography>
+            <TouchableOpacity
+              style={styles.selectionTileContent}
+              onPress={() =>
+                navigation.push("SettingsCategoriesSelectionScreen")
+              }
+            >
+              <Typography>Categories</Typography>
 
               <Ionicons
                 name="chevron-forward"

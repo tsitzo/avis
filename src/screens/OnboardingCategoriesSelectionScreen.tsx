@@ -74,13 +74,20 @@ const OnboardingCategoriesSelectionScreen: FC<
                       </Typography>
                     </View>
                   </View>
-                  {selectedCategories.find((c) => c.name === item.name) && (
-                    <Ionicons
-                      name="checkmark"
-                      color={colors.primary}
-                      size={18}
-                    />
-                  )}
+
+                  <Ionicons
+                    name={
+                      selectedCategories.find((c) => c.name === item.name)
+                        ? "radio-button-on"
+                        : "radio-button-off"
+                    }
+                    color={
+                      selectedCategories.find((c) => c.name === item.name)
+                        ? colors.primary
+                        : colors.subtext
+                    }
+                    size={18}
+                  />
                 </TouchableOpacity>
               </View>
             )}
