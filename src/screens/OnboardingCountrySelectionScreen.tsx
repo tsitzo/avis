@@ -72,17 +72,19 @@ const OnboardingCountrySelectionScreen: FC<
                         style={styles.capitalize}
                         size={14}
                       >
-                        {item.language}{" "}
+                        {item.language}
                       </Typography>
                     </View>
                   </View>
-                  {selectedCountry.name === item.name && (
-                    <Ionicons
-                      name="checkmark"
-                      color={colors.primary}
-                      size={18}
-                    />
-                  )}
+                  <Ionicons
+                    name={
+                      selectedCountry.name === item.name
+                        ? "radio-button-on"
+                        : "radio-button-off"
+                    }
+                    color={colors.primary}
+                    size={18}
+                  />
                 </TouchableOpacity>
               </View>
             )}
