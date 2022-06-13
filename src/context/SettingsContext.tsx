@@ -1,11 +1,12 @@
 import React, { FC, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Category, Country, Themes } from "../types/types";
+import { Browsers, Category, Country, Themes } from "../types/types";
 import { categories } from "../data/categories";
 import { countries } from "../data/countries";
 
 type SettingsContextState = {
   theme: Themes;
+  browser: Browsers;
   categories: Category[];
   selectedCategories: Category[];
   countries: Country[];
@@ -16,11 +17,14 @@ type SettingsContextState = {
   removeCategory: (category: Category) => void;
   selectCountry: (country: Country) => void;
   setFirstVisitFalse: () => void;
+  selectBrowser: (browser: Browsers) => void;
+
   selectTheme: (theme: Themes) => void;
 };
 
 const contextDefaultValue: SettingsContextState = {
   theme: "automatic",
+  browser: "in app",
   isFirstVisitLoading: false,
   isFirstVisit: true,
   categories: categories,
@@ -31,6 +35,7 @@ const contextDefaultValue: SettingsContextState = {
   addCategory: () => {},
   removeCategory: () => {},
   setFirstVisitFalse: () => {},
+  selectBrowser: () => {},
   selectTheme: () => {},
 };
 
@@ -39,6 +44,8 @@ export const SettingsContext =
 
 export const SettingsContextProvider: FC = ({ children }) => {
   const [theme, setTheme] = useState<Themes>(contextDefaultValue.theme);
+
+  const [browser, setBrowser] = useState<Browsers>(contextDefaultValue.browser);
 
   const [isFirstVisitLoading, setIsFirstVisitLoading] = useState<boolean>(
     contextDefaultValue.isFirstVisitLoading
@@ -50,6 +57,10 @@ export const SettingsContextProvider: FC = ({ children }) => {
   const [countries, setCountries] = useState<Country[]>(
     contextDefaultValue.countries
   );
+
+  const selectBrowser = (browser: Browsers) => {
+    setBrowser(browser);
+  };
 
   const [selectedCountry, setSelectedCountry] = useState<Country>(
     contextDefaultValue.selectedCountry
@@ -168,12 +179,36 @@ export const SettingsContextProvider: FC = ({ children }) => {
     setIsFirstVisitLoading(false);
   };
 
+  const saveBrowser = async (value: Browsers) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@avis/browser", jsonValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadBrowser = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@avis/browser");
+      if (value !== null) {
+        setBrowser(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     loadTheme();
   }, []);
 
   useEffect(() => {
     loadFirstVisit();
+  }, []);
+
+  useEffect(() => {
+    loadBrowser();
   }, []);
 
   useEffect(() => {
@@ -200,10 +235,15 @@ export const SettingsContextProvider: FC = ({ children }) => {
     saveCategories(selectedCategories!);
   }, [selectedCategories]);
 
+  useEffect(() => {
+    saveBrowser(browser);
+  }, [browser]);
+
   return (
     <SettingsContext.Provider
       value={{
         theme,
+        browser,
         countries,
         selectedCountry,
         categories,
@@ -215,6 +255,7 @@ export const SettingsContextProvider: FC = ({ children }) => {
         selectCountry,
         setFirstVisitFalse,
         selectTheme,
+        selectBrowser,
       }}
     >
       {children}

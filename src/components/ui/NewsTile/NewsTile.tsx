@@ -6,24 +6,28 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Article } from "../../../types/types";
 import { useTheme } from "@react-navigation/native";
 import Spacer from "../../layout/Spacer";
 import Typography from "../../text/Typography";
 import NewsTileBookmarkButton from "./NewsTileBookmarkButton";
 import dayjs from "dayjs";
+import openLink from "../../../utils/openLink";
+import { SettingsContext } from "../../../context/SettingsContext";
 
 interface INewsTileProps {
   article: Article;
 }
 
 const NewsTile: FC<INewsTileProps> = ({ article }) => {
+  const { browser } = useContext(SettingsContext);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { colors } = useTheme();
 
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity onPress={() => openLink(article.url, browser)}>
       {isLoading && (
         <View
           style={[styles.placeHolderImage, { backgroundColor: colors.card }]}
@@ -31,7 +35,7 @@ const NewsTile: FC<INewsTileProps> = ({ article }) => {
           <ActivityIndicator color={colors.primary} />
         </View>
       )}
-      {article.urlToImage !== "" ? (
+      {article.urlToImage !== "" || article.urlToImage ? (
         <Image
           resizeMode="cover"
           source={{

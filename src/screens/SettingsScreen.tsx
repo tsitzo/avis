@@ -100,6 +100,55 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
+
+          <View
+            style={[
+              styles.selectionTile,
+              styles.selectionTileBorder,
+
+              {
+                borderBottomColor: colors.separator,
+              },
+            ]}
+          >
+            <TouchableOpacity
+              style={styles.selectionTileContent}
+              onPress={() => navigation.push("SettingsBrowserSelectionScreen")}
+            >
+              <Typography>Browser</Typography>
+
+              <Ionicons
+                name="chevron-forward"
+                size={20}
+                color={colors.subtext}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={[styles.itemsWrapper, { backgroundColor: colors.card }]}>
+          <View
+            style={[
+              styles.selectionTile,
+              styles.selectionTileBorder,
+
+              {
+                borderBottomColor: colors.separator,
+              },
+            ]}
+          >
+            <TouchableOpacity
+              style={styles.selectionTileContent}
+              onPress={() => navigation.push("BookmarkedNewsScreen")}
+            >
+              <Typography>Saved News</Typography>
+              <Ionicons
+                name="chevron-forward"
+                size={20}
+                color={colors.subtext}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={[styles.itemsWrapper, { backgroundColor: colors.card }]}>

@@ -6,9 +6,11 @@ import { ActivityIndicator, View } from "react-native";
 import { AppStackParams } from "../types/navigation";
 import { AppTabs } from "./AppTabs";
 import {
+  BookmarkedNewsScreen,
   OnboardingCategoriesSelectionScreen,
   OnboardingCountrySelectionScreen,
   OnboardingWelcomeScreen,
+  SettingsBrowserelectionScreen,
   SettingsCategoriesSelectionScreen,
   SettingsCountrySelectionScreen,
   SettingsThemeSelectionScreen,
@@ -91,6 +93,22 @@ export const AppStack = () => {
             options={{
               headerLargeTitle: true,
               headerTitle: "Select Categories",
+            }}
+          />
+          <Screen
+            name="SettingsBrowserSelectionScreen"
+            component={SettingsBrowserelectionScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Select Browser",
+            }}
+          />
+          <Screen
+            name="BookmarkedNewsScreen"
+            component={BookmarkedNewsScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Saved News",
             }}
           />
         </>

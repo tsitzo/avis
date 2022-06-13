@@ -7,6 +7,8 @@ import OnboardingWelcomeScreen from "./OnboardingWelcomeScreen";
 import MyNewsScreen from "./MyNewsScreen";
 import SettingsCountrySelectionScreen from "./SettingsCountrySelectionScreen";
 import SettingsCategoriesSelectionScreen from "./SettingsCategoriesSelectionScreen";
+import SettingsBrowserelectionScreen from "./SettingsBrowserelectionScreen";
+import BookmarkedNewsScreen from "./BookmarkedNewsScreen";
 export {
   HomeScreen,
   SettingsScreen,
@@ -14,7 +16,9 @@ export {
   OnboardingWelcomeScreen,
   OnboardingCountrySelectionScreen,
   SettingsThemeSelectionScreen,
+  SettingsBrowserelectionScreen,
   MyNewsScreen,
   SettingsCountrySelectionScreen,
   SettingsCategoriesSelectionScreen,
+  BookmarkedNewsScreen,
 };

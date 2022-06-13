@@ -50,7 +50,7 @@ const HomeScreen = () => {
           <Typography>There was an error fetching data.</Typography>
         </View>
       )}
-      {!loading && !error && response && (
+      {!loading && !error && response?.articles && (
         <FlatList
           contentContainerStyle={styles.flatListContent}
           data={response.articles}
