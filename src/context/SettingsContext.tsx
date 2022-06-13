@@ -6,7 +6,6 @@ import { countries } from "../data/countries";
 
 type SettingsContextState = {
   theme: Themes;
-
   categories: Category[];
   selectedCategories: Category[];
   countries: Country[];

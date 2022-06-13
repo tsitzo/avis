@@ -18,6 +18,7 @@ import { useFetch } from "../hooks/useFetch";
 import { SettingsContext } from "../context/SettingsContext";
 import { API_KEY } from "@env";
 import { Article } from "../types/types";
+import NewsTile from "../components/ui/NewsTile";
 
 interface INewsResponse {
   status: string;
@@ -51,9 +52,23 @@ const HomeScreen = () => {
       )}
       {!loading && !error && response && (
         <FlatList
+          contentContainerStyle={styles.flatListContent}
           data={response.articles}
-          renderItem={({ item }) => <Typography>{item.title}</Typography>}
-          keyExtractor={(item) => item.url}
+          keyExtractor={(item) => item.title}
+          renderItem={({ item, index }) => (
+            <View
+              style={[
+                styles.listItemWrapper,
+                {
+                  borderBottomColor: colors.separator,
+                  borderBottomWidth:
+                    index + 1 < response.articles.length ? 0.17 : 0,
+                },
+              ]}
+            >
+              <NewsTile article={item} />
+            </View>
+          )}
         />
       )}
     </SafeArea>
@@ -68,4 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  listItemWrapper: { paddingVertical: 20 },
+  flatListContent: { paddingHorizontal: 15 },
+  topRowIconContainer: { flexDirection: "row" },
 });
