@@ -3,13 +3,16 @@ import React from "react";
 import { Routes } from "./src/navigation/Routes";
 import { SettingsContextProvider } from "./src/context/SettingsContext";
 import { AppearanceProvider } from "react-native-appearance";
+import { BookmarksContextProvider } from "./src/context/BookmarksContext";
 
 const App = () => {
   return (
     <AppearanceProvider>
-      <SettingsContextProvider>
-        <Routes />
-      </SettingsContextProvider>
+      <BookmarksContextProvider>
+        <SettingsContextProvider>
+          <Routes />
+        </SettingsContextProvider>
+      </BookmarksContextProvider>
     </AppearanceProvider>
   );
 };
