@@ -39,7 +39,7 @@ export const countries: Country[] = [
   },
   {
     name: "Brazil",
-    language: "",
+    language: "Portuguese",
     iso: "br",
     flag: require("../../assets/flags/br.png"),
   },

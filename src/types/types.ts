@@ -10,3 +10,19 @@ export type Country = {
 export type Category = {
   name: string;
 };
+
+export type Article = {
+  source: Source;
+  author: null | string;
+  title: string;
+  description: null | string;
+  url: string;
+  urlToImage: null | string;
+  publishedAt: Date;
+  content: null | string;
+};
+
+export type Source = {
+  id: null | string;
+  name: string;
+};
