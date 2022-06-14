@@ -24,7 +24,12 @@ export type Article = {
   content: null | string;
 };
 
-export type Source = {
+export interface Source {
   id: null | string;
   name: string;
-};
+  description: string;
+  url: string;
+  category: string;
+  language: string;
+  country: string;
+}

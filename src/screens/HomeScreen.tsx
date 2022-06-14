@@ -34,6 +34,8 @@ const HomeScreen = () => {
 
   const { response, loading, error, fetchData } = useFetch<INewsResponse>(URI);
 
+  console.log(URI);
+
   return (
     <SafeArea>
       {loading && (

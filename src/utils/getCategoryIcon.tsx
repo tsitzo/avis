@@ -39,7 +39,7 @@ export const getCategoryIcon = (
       return (
         <FontAwesome5
           name="funnel-dollar"
-          size={20 + sizeMultiplier}
+          size={24 + sizeMultiplier}
           color={color}
         />
       );
