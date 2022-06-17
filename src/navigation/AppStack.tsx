@@ -7,6 +7,7 @@ import { AppStackParams } from "../types/navigation";
 import { AppTabs } from "./AppTabs";
 import {
   BookmarkedNewsScreen,
+  NewsByCategoryScreen,
   OnboardingCategoriesSelectionScreen,
   OnboardingCountrySelectionScreen,
   OnboardingWelcomeScreen,
@@ -110,6 +111,14 @@ export const AppStack = () => {
               headerLargeTitle: true,
               headerTitle: "Saved News",
             }}
+          />
+          <Screen
+            name="NewsByCategoryScreen"
+            component={NewsByCategoryScreen}
+            options={({ route }) => ({
+              headerLargeTitle: true,
+              headerTitle: route.params.category,
+            })}
           />
         </>
       )}

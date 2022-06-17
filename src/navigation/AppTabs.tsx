@@ -21,7 +21,7 @@ const HomeScreenStack = () => {
   return (
     <Navigator
       screenOptions={{
-        headerLargeTitle: true,
+        // headerLargeTitle: true,
         headerLargeStyle: { backgroundColor: colors.background },
         headerStyle: { backgroundColor: colors.card },
 
@@ -86,7 +86,7 @@ export const AppTabs = () => {
         tabBarStyle: {
           backgroundColor: colors.card,
         },
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
       }}
     >
       <Screen
@@ -107,7 +107,7 @@ export const AppTabs = () => {
         name="MyNewsScreen"
         component={MyNewsScreenStack}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "My News",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "md-newspaper" : "md-newspaper-outline"}

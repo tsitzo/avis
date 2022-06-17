@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -7,30 +6,38 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
-
-import Typography from "../components/text/Typography";
+import React, { FC, useContext } from "react";
+import { RouteProp, useTheme } from "@react-navigation/native";
+import { AppStackParams } from "../types/navigation";
+import { API_KEY } from "@env";
+import { SettingsContext } from "../context/SettingsContext";
+import { useFetch } from "../hooks/useFetch";
 import SafeArea from "../components/layout/SafeArea";
 import Spacer from "../components/layout/Spacer";
-
-import { useFetch } from "../hooks/useFetch";
-import { SettingsContext } from "../context/SettingsContext";
-import { API_KEY } from "@env";
-import { Article } from "../types/types";
+import Typography from "../components/text/Typography";
 import NewsTile from "../components/ui/NewsTile";
-
+import { Ionicons } from "@expo/vector-icons";
+import { Article } from "../types/types";
 interface INewsResponse {
   status: string;
   totalResults: number;
   articles: Article[];
 }
 
-const HomeScreen = () => {
-  const { selectedCountry } = useContext(SettingsContext);
+interface ILaunchDetailsScreenProps {
+  // navigation: NativeStackNavigationProp<AppStackParams, "LaunchDetailsScreen">;
+  route: RouteProp<AppStackParams, "NewsByCategoryScreen">;
+}
+
+const NewsByCategoryScreen: FC<ILaunchDetailsScreenProps> = ({ route }) => {
+  const { category } = route.params;
   const { colors } = useTheme();
 
-  const URI = `https://newsapi.org/v2/top-headlines?country=${selectedCountry.iso}&pageSize=30&apiKey=${API_KEY}`;
+  const { selectedCountry } = useContext(SettingsContext);
+
+  const URI = `https://newsapi.org/v2/top-headlines?country=${
+    selectedCountry.iso
+  }&category=${category.toLowerCase()}&pageSize=30&apiKey=${API_KEY}`;
 
   const { response, loading, error, fetchData } = useFetch<INewsResponse>(URI);
 
@@ -75,7 +82,7 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default NewsByCategoryScreen;
 
 const styles = StyleSheet.create({
   centeredPage: {

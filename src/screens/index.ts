@@ -9,7 +9,10 @@ import SettingsCountrySelectionScreen from "./SettingsCountrySelectionScreen";
 import SettingsCategoriesSelectionScreen from "./SettingsCategoriesSelectionScreen";
 import SettingsBrowserelectionScreen from "./SettingsBrowserelectionScreen";
 import BookmarkedNewsScreen from "./BookmarkedNewsScreen";
+import NewsByCategoryScreen from "./NewsByCategoryScreen";
+
 export {
+  NewsByCategoryScreen,
   HomeScreen,
   SettingsScreen,
   OnboardingCategoriesSelectionScreen,

@@ -16,4 +16,7 @@ export type AppStackParams = {
   SettingsCategoriesSelectionScreen: undefined;
   SettingsBrowserSelectionScreen: undefined;
   BookmarkedNewsScreen: undefined;
+  NewsByCategoryScreen: {
+    category: string;
+  };
 };
